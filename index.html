@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Words</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color:  #130f40;
+    }
+
+    #word-container {
+      font-size: 7em;
+      color: white;
+      user-select: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #static-border {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 80%;
+      height: 60%;
+      border: 8px solid #f5f6fa;
+      background-color: #34495e;
+      z-index: 1;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="static-border"></div>
+  <div id="word-container"></div>
+
+  <script>
+    // Array of words
+    var words = ["will", "of", "was", "and", "a", "the", "is", "on", "to", "for", "I", "like", "go"];
+  
+    // Array of specified colors
+    var specifiedColors = ["blue", "red", "green", "yellow", "saddlebrown", "darkorange", "white"];
+
+    // Function to change the word and text color
+    function changeWord() {
+      // Get a random index from the array
+      var randomIndex = Math.floor(Math.random() * words.length);
+
+      // Get the word at the random index
+      var randomWord = words[randomIndex];
+
+      // Get a random index for the specified colors
+      var randomColorIndex = Math.floor(Math.random() * specifiedColors.length);
+
+      // Get the color at the random index
+      var randomColor = specifiedColors[randomColorIndex];
+
+      // Display the random word and set the text color
+      var wordContainer = document.getElementById("word-container");
+      wordContainer.innerHTML = randomWord;
+      wordContainer.style.color = randomColor;
+    }
+
+    // Call the changeWord function on page load
+    window.onload = changeWord;
+
+    // Set up click event listeners to change the word on click
+    document.getElementById("static-border").addEventListener("click", changeWord);
+    document.getElementById("word-container").addEventListener("click", changeWord);
+  </script>
+</body>
+</html>
